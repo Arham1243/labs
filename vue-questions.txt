@@ -1,0 +1,12 @@
+var const and let diffrence 
+what types of rendering does nuxt support (SSG, SSR)
+directory structure 
+vue 2 vs vue 3 and diffrences
+life cycle hooks what are the those from the start 
+data binding (v-model, v-bind) two way binding
+computed property 
+conditional rendedering
+can you tell me the significance of key attribute? in for loops
+how to call a parent function from child component
+ref attribure in dom
+fitlers function in js

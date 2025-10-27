@@ -1,0 +1,185 @@
+.test-b {
+    color: red;
+}
+.header-subtitle {
+    font-weight: normal;
+}
+.column-text-right {
+    .p-column-header-content {
+        text-align: right;
+        display: block !important;
+    }
+}
+.insured-summary-sidebar{
+    width: 450px !important;
+}
+.action-sidebar{
+    width: 460px !important;
+}
+.new-expense-sidebar{
+    width: 550px !important;
+}
+
+/* Extra Utilities classes */
+.w-0 {
+    width: 0!important;
+}
+.w-450px {
+    width: 450px!important;
+}
+
+/* Button badge classes */
+.p-button .p-badge {
+    /*background-color: #14377D !important;*/
+    color: #14377D !important;
+    font-size: 1rem;
+}
+
+/* Input percentage class */
+.percentage-input > input {
+    width: 90px;
+}
+
+/* Input co-pay amount class */
+.co-pay-amount-input > input {
+    width: 185px;
+}
+
+/* Input approved total class */
+.approved-total-input > input {
+    width: 280px;
+}
+
+/* Input reserved amount class */
+.reserved-amt-input > input {
+    width: 275px;
+}
+
+.p-inputnumber input {
+    width: 100%;
+}
+
+.bg-transparent input {
+    background: transparent;
+}
+
+/* Approved Tooltip class */
+.expense-approved-tooltip > .p-overlaypanel-content {
+    padding: 0 !important;
+}
+
+/* Recommend move submission class */
+.bg-recommended {
+    /* root/surface-ground */
+    background: #EFF3F8;
+    border-radius: 8px;
+}
+
+/* Button group class */
+.button-group {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:not(:last-child) {
+    border-right: 1px solid #ddd;
+}
+
+.button.active {
+    background-color: #14377D;
+    color: #ffffff;
+    font-weight: bold;
+    outline: 2px solid #CED4DA;
+}
+
+.button:hover:not(.active) {
+    background-color: #f0f0f0;
+}
+
+/* Claim history filter bg class */
+.filter-bg {
+    background-color: #F8F9FA;
+    border-bottom: solid #DEE2E6;
+}
+
+/* Active claim history card bg class */
+.claim-history-card-bg {
+    background-color: #F6F9FC;
+}
+
+.expense-action-buttons {
+    position: relative;
+    margin-top: 420px;
+}
+
+.submission-table-actions {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* Status Tag colors updated */
+
+.claims-status-tag.p-tag, .claims-tag.p-tag {
+    padding: 0.25rem 0.4rem 0.2rem;
+    background-color: var(--blue-100);
+    color: var(--primary-color);
+    &.p-tag-success {
+        background-color: var(--green-100);
+        color: var(--green-700);
+    }
+    &.p-tag-secondary {
+        background-color: #E0E0E0;
+        color: #495057;
+    }
+    &.p-tag-danger {
+        background-color: var(--red-100);
+        color: var(--red-700);
+    }
+    &.p-tag-warning {
+        background-color: var(--orange-100);
+        color: var(--orange-700);
+    }
+    .p-tag-value {
+        font-weight: bold;
+    }
+}
+
+.claims-tag.p-tag {
+    padding: 0.35rem 0.6rem 0.3rem;
+}
+
+/* Required Outline*/
+.field_error, .field_error input {
+    border: 1px solid #f00!important;
+    border-radius: 6px!important;
+}
+
+/* Prevent double borders on Calendar - make inner input transparent */
+.field_error .p-inputtext {
+    border: none !important;
+}
+
+/* Policy container on Insured Claim History */
+.policy-container {
+    background-color: #F8F9FA;
+    border-color: #DEE2E6;
+}
+
+.policy-container-title {
+    color: #6C757D;
+}

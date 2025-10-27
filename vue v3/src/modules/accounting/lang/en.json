@@ -1,0 +1,207 @@
+{
+    "invoice": {
+        "title": "Invoices & Credit Notes",
+        "new_invoice": "New Invoice",
+        "clear_filters": "Clear Filters",
+        "due": {
+            "1_to_30_days": "1-30 Days Past Due",
+            "31_60_days": "31-60 Days Past Due",
+            "61_to_90_days": "61-90 Days Past Due",
+            "over_90_days": "Over 90 Days Past Due",
+            "total": "Total Amount Due"
+        },
+        "invoice_table": {
+            "status": "Status",
+            "search": "Search by Invoice #",
+            "invoice_date": "Invoice Date",
+            "invoice_number": "Invoice Number",
+            "invoice": "Invoice",
+            "client": "Client",
+            "business_unit": "Business Unit",
+            "account_type": "Account Type",
+            "total": "Total Amount",
+            "amount_due": "Due Amount",
+            "due_date": "Due date",
+            "actions_button_label": "Actions",
+            "filter_button_label": "Filter",
+            "empty_table_content": "No results found",
+            "table_loading": "Loading",
+            "action": "Actions",
+            "columns": "Columns",
+            "columns_options": {
+                "paid_amount": "Paid Amount",
+                "due_date": "Due Date",
+                "last_payment_date": "Last Payment Date",
+                "account_manager": "Account Manager",
+                "po_number": "PO Number",
+                "group_name": "Group Name",
+                "total_number_of_policies": "Total Number of Policies"
+            },
+            "review": {
+                "error": "Error",
+                "loading_error": "Errors in loading Invoice List"
+            },
+            "bulk_actions": {
+                "bulk_actions_button_label": "Bulk Actions",
+                "bulk_actions_button_with_count_label": "Bulk Actions ({count} selected)",
+                "select_all_on_this_page": "Select all on this page ({count})",
+                "clear_selection": "Clear selection",
+                "record_payment": "Record Payment",
+                "export_as_pdf": "Export as PDF",
+                "export_as_csv": "Export as CSV",
+                "print": "Print"
+            }
+        },
+        "beautiful_status": {
+            "draft": "Draft",
+            "unpaid": "Unpaid",
+            "paid": "Paid",
+            "cancelled": "Cancelled",
+            "void": "Void",
+            "partial_pymt": "Partial Pymt",
+            "overdue": "Overdue",
+            "over_paid": "Over Paid",
+            "pending": "Pending"
+        },
+        "business_unit_type": {
+            "cod": "COD",
+            "later": "Pay Later"
+        },
+        "filter": {
+            "title": "Filter Invoices",
+            "date": "Date",
+            "start_date": "Start Date",
+            "end_date": "End Date",
+            "business_units": "Business Unit(s)",
+            "statuses": "Statuses",
+            "client": "Client",
+            "status": "Status",
+            "date_options": {
+                "none": "None",
+                "last_7_days": "Last 7 Days",
+                "last_30_days": "Last 30 Days",
+                "last_60_days": "Last 60 Days",
+                "last_12_months": "Last 12 Months",
+                "custom_range": "Custom Date Range"
+            }
+        },
+        "record_payment": {
+            "title": "Record Payment",
+            "payment_date": "Payment Date",
+            "payment_method": "Payment Method",
+            "payment_amount": "Payment Amount",
+            "current_balance_due": "Current Balance Due: {invoice_amount}",
+            "ref": "Ref #",
+            "deposit_date": "Deposit Date",
+            "memo": "Memo/Notes",
+            "attach_receipt": "Attach Receipt",
+            "attach_cheque": "Attach Cheque",
+            "choose_file": "choose file"
+        },
+        "export": {
+            "title": "Export Invoices",
+            "export_button": "Export",
+            "success_message": "The export job has been sent successfully. An email will be sent once the file is ready",
+            "success": "Success",
+            "max_selections_title": "Maximum Selections Reached",
+            "max_selections_message": "You can select a maximum of 20 items",
+            "add_condition": "Add Condition"
+        },
+        "invoice_details": {
+            "title": "Invoice # {invoice_number}",
+            "amount_due": "Amount Due {amount}",
+            "due_at": "Due {date}",
+            "actions": "Actions",
+            "view_history": "View History",
+            "action_buttons": {
+                "void_invoice": "Void Invoice"
+            },
+            "invoice": "Invoice",
+            "po_#": "PO #",
+            "invoice_#": "Invoice #",
+            "policy_#": "Policy #",
+            "student_#": "Student #",
+            "invoice_date": "Invoice Date",
+            "payment_terms": "Payment Terms",
+            "payment_due_date": "Payment Due Date",
+            "guardme_office_address": {
+                "line1": "Guard.me International Insurance",
+                "line2": "80 Allstate Parkway, 3rd Floor",
+                "line3": "Markham, ON CANADA L3R 6H3"
+            },
+            "invoice_to": "Invoice To",
+            "attention_to": "Attention To",
+            "prepaid": "Prepaid",
+            "group": "Group",
+            "total_policies": "Total # Of Policies",
+            "total_enrollments": "Total # Of Enrollments",
+            "total_term": "Total Term",
+            "account_manager": "Account Manager",
+            "invoice_items_table": {
+                "description": "Description",
+                "status": "Status",
+                "start_date": "Start Date",
+                "end_date": "End Date",
+                "er_date": "ER Date",
+                "opt_out_date": "Opt Out Date",
+                "term": "Term",
+                "price": "Price",
+                "add_on": "Add-On",
+                "membership": "Membership",
+                "tax": "Tax",
+                "total": "Total"
+            },
+            "cheque_payable": "Please make cheque payable to:",
+            "cheque_payable_address": {
+                "line1": "Travel Healthcare Insurance Solutions Inc.",
+                "line2": "o/a guard.me International Insurance",
+                "line3": "80 Allstate Parkway, 3rd Floor",
+                "line4": "Markham, ON CANADA L3R 6H3"
+            },
+            "use_invoice_number_as_reference": {
+                "title": "Use the invoice number as reference",
+                "line1": "Thank You for your prompt attention to",
+                "line2": "this invoice which is DUE UPON RECEIPT."
+            },
+            "payment_accept": {
+                "title": "We also accept:",
+                "line1": "Online Banking/ Wire transfer (Use Acct no: 2931)",
+                "line2": "PAY by Credit Card",
+                "line3": "PayPal"
+            },
+            "payment_summary": {
+                "insurance_total": "Insurance Total",
+                "add_on_total": "Add-On Total",
+                "admin_fee": "Admin Fee",
+                "sales_tax": "Sales Tax",
+                "grand_total": "Grand Total",
+                "payment_and_credits": "Payments/Credits",
+                "bank_payment_made": "Bank Payment on {date}",
+                "balance_due": "Balance Due"
+            },
+            "footer": {
+                "line1": "Tel: (905) 752-6200 • Toll Free: 1-877-873-8447 • Fax: (905) 752-6225 • Toll Free Fax: 1-866-329-8447 • {email} • https://www.guard.me",
+                "line2": "ISO9001: 2008 Registered Underwritten by: Old Republic Insurance Company of Canada",
+                "line3": "HST NO:800902928 RT0001"
+            }
+        },
+        "void_invoice": {
+            "dialog": {
+                "title": "Void Invoice",
+                "message": "Invoice #{invoice_number} for {client_name} will be marked as Void and it will no longer be valid for payment. This action cannot be undone.",
+                "confirm_button": "Void Invoice",
+                "reason": "*Reason"
+            }
+        },
+        "notifications": {
+            "void_title": "Invoice Voided",
+            "void_message": "The invoice has been successfully voided"
+        },
+        "notification": {
+            "record_payment": {
+                "title": "Payment recorded successfully",
+                "message": "Payment for Invoice has been recorded successfully."
+            }
+        }
+    }
+}

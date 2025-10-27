@@ -1,0 +1,72 @@
+name: 'Upgrade Request'
+description: 'Request to upgrade a package, dependency, or library version.'
+title: '[Upgrade] <Package Name> from <Current Version> to <Target Version>'
+labels: ['upgrade']
+body:
+    - type: input
+      id: package
+      attributes:
+          label: Package/Dependency Name
+          placeholder: 'laravel/framework'
+      validations:
+          required: true
+
+    - type: input
+      id: current_version
+      attributes:
+          label: Current Version
+          placeholder: '10.14.0'
+      validations:
+          required: true
+
+    - type: input
+      id: target_version
+      attributes:
+          label: Target Version
+          placeholder: '10.15.1'
+      validations:
+          required: true
+
+    - type: textarea
+      id: reason
+      attributes:
+          label: Reason for Upgrade
+          description: Explain why this upgrade is needed (security patch, bug fix, new features, etc.).
+          placeholder: |
+              - Security vulnerability in current version (CVE-2025-xxxx)
+              - New feature: ...
+              - Fixes critical bug affecting X
+      validations:
+          required: true
+
+    - type: textarea
+      id: impact
+      attributes:
+          label: Impact / Risks
+          description: Mention any potential breaking changes or compatibility issues.
+          placeholder: |
+              - May require PHP >= 8.2
+              - Some APIs deprecated
+              - Tests need to be updated
+      validations:
+          required: true
+
+    - type: textarea
+      id: plan
+      attributes:
+          label: Upgrade Plan
+          description: Outline how the upgrade will be performed and validated.
+          placeholder: |
+              1. Update composer.json and run composer update
+              2. Run full test suite
+              3. Perform regression testing on staging
+              4. Deploy to production
+
+    - type: textarea
+      id: references
+      attributes:
+          label: References / Changelog
+          placeholder: |
+              - https://github.com/laravel/framework/releases/tag/v10.15.1
+              - https://github.com/laravel/framework/blob/10.x/CHANGELOG.md
+              - CVE report link

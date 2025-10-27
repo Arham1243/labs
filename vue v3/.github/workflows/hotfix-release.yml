@@ -1,0 +1,78 @@
+name: Create Hotfix Release
+
+on:
+    pull_request:
+        types: [closed]
+        branches:
+            - main
+
+jobs:
+    check_hotfix_and_release:
+        name: 'Check Hotfix and Create Patch Release'
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.merged == true && contains(github.event.pull_request.head.ref, 'hotfix/')
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+
+            - name: Extract hotfix branch name
+              id: extract_branch
+              run: |
+                  BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+
+                  if [[ ! "$BRANCH_NAME" == *"hotfix/"* ]]; then
+                    echo "Not a hotfix branch: $BRANCH_NAME"
+                    exit 0
+                  fi
+
+                  echo "HOTFIX_BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
+                  echo "Detected hotfix branch: $BRANCH_NAME"
+
+            - name: Get latest release
+              id: latest_release
+              run: |
+                  LATEST_RELEASE=$(curl -s -H "Authorization: Bearer ${{ secrets.HORUS_PAT_TOKEN }}" \
+                    "https://api.github.com/repos/${{ github.repository }}/releases/latest" | \
+                    jq -r .tag_name)
+
+                  if [ "$LATEST_RELEASE" = "null" ]; then
+                    echo "No releases found. Creating initial release v0.1.0"
+                    echo "NEW_TAG=v0.1.0" >> $GITHUB_ENV
+                    exit 0
+                  fi
+
+                  # Remove 'v' prefix if present
+                  VERSION=${LATEST_RELEASE#v}
+
+                  # Split version into components
+                  IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+
+                  # Increment patch version
+                  NEW_PATCH=$((PATCH + 1))
+                  NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
+                  NEW_TAG="v${NEW_VERSION}"
+
+                  echo "LATEST_RELEASE=$LATEST_RELEASE" >> $GITHUB_ENV
+                  echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+                  echo "Latest release: $LATEST_RELEASE"
+                  echo "New tag: $NEW_TAG"
+
+            - name: Create new release
+              if: env.NEW_TAG != ''
+              run: |
+                  curl -X POST \
+                    -H "Accept: application/vnd.github+json" \
+                    -H "Authorization: Bearer ${{ secrets.HORUS_PAT_TOKEN }}" \
+                    "https://api.github.com/repos/${{ github.repository }}/releases" \
+                    -d "{
+                      \"tag_name\": \"${{ env.NEW_TAG }}\",
+                      \"target_commitish\": \"main\",
+                      \"name\": \"${{ env.NEW_TAG }}\",
+                      \"draft\": false,
+                      \"prerelease\": false,
+                      \"generate_release_notes\": true,
+                      \"make_latest\": \"true\"
+                    }"

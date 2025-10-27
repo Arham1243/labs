@@ -1,0 +1,53 @@
+@use '@/assets/layout/layout.scss';
+@use '@/assets/demo/demo.scss';
+@use '@/assets/overrides.scss';
+
+@import 'primeicons/primeicons.css';
+@import '@/assets/tailwind.css';
+
+.message-info {
+    background-color: #bfdbfe;
+    border-radius: 7px;
+    color: #395a99;
+    padding: 15px;
+}
+
+.message-danger {
+    background-color: #ffcfce;
+    border-radius: 7px;
+    color: #892e2a;
+    padding: 5px;
+}
+
+.message-success {
+    background-color: #caf0d7;
+    color: #0b4c23;
+    padding: 7px;
+}
+
+.p-dialog-header {
+    align-items: start !important;
+}
+
+// PrimeVue Dialog header icon
+.icon-wrapper {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrapper .pi {
+    font-size: 14px;
+}
+
+.left-loading .p-button-loading-icon {
+    position: absolute !important;
+    left: 1rem !important;
+}
+
+.field {
+    margin-bottom: 1rem;
+}

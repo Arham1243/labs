@@ -1,0 +1,29 @@
+version: 2
+registries:
+    private-github:
+        type: git
+        url: https://github.com
+        username: x-access-token
+        password: ${{secrets.HORUS_PAT_TOKEN}}
+
+updates:
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+          time: '07:00'
+          timezone: 'America/Toronto'
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: 'npm'
+      directory: '/'
+      open-pull-requests-limit: 10
+      schedule:
+          interval: 'daily'
+          time: '07:00'
+          timezone: 'America/Toronto'
+      labels:
+          - 'dependencies'
+      registries:
+          - private-github

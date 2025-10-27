@@ -1,0 +1,118 @@
+name: Deploy
+
+on:
+    # Auto deploy on push to branches matching 0.*.x
+    push:
+        branches:
+            - 0.*.x
+
+    # Manual deploy on dispatch, with environment choices
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Select Environment'
+                required: true
+                type: choice
+                options:
+                    - platform-develop
+                    - platform-qa
+                    - platform-uat
+                    - platform-dms
+                    - platform-features
+                    - plan-develop
+                    - plan-qa
+                    - client-develop
+                    - client-qa
+                    - claim-develop
+                    - claim-qa
+                    - policy-develop
+                    - policy-qa
+                    - accounting-develop
+                    - accounting-qa
+
+jobs:
+    deploy:
+        name: Deploy into ${{ github.event.inputs.environment || 'platform-qa' }}
+        runs-on: ubuntu-latest
+
+        # Use the chosen environment for manual dispatch; default to 'platform-qa' for auto push.
+        environment: ${{ github.event.inputs.environment || 'platform-qa' }}
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 20
+
+            - name: Cache node modules
+              id: cache-node-modules
+              uses: actions/cache@v4
+              with:
+                  path: node_modules
+                  key: "${{ runner.os }}-node-${{ hashFiles('package.json') }}"
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Install dependencies
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm install --non-interactive --legacy-peer-deps
+
+            - name: Add credentials
+              run: |
+                  echo '${{ secrets.DEV_FIREBASE_CREDENTIALS }}' > $GITHUB_WORKSPACE/public/firebase-auth.json
+
+            - name: Build Vue.js app
+              # We define the GITHUB_REF_NAME environment variable by capturing github.ref_name,
+              # then remove .x if it ends with .x, and finally build.
+              env:
+                  GITHUB_REF_NAME: ${{ github.ref_name }}
+              run: |
+                  # If the branch name ends with ".x", remove the suffix
+                  if [[ "$GITHUB_REF_NAME" == *.x ]]; then
+                    GITHUB_REF_NAME="${GITHUB_REF_NAME%.x}"
+                  fi
+
+                  echo "VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}" > .env
+                  echo "VITE_API_APP_VERSION=$GITHUB_REF_NAME" >> .env
+
+                  npm run build
+
+            - name: Prepare environment
+              id: preparations
+              run: |
+                  echo "::set-output name=aws-access-key-id::${{ secrets.AWS_ACCESS_KEY_ID }}"
+                  echo "::set-output name=aws-secret-access-key::${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+                  echo "::set-output name=aws-region::ca-central-1"
+                  echo "::set-output name=aws-s3-bucket::${{ vars.AWS_S3_BUCKET }}"
+
+            - name: Deploy to S3
+              uses: jakejarvis/s3-sync-action@master
+              with:
+                  args: --acl public-read --follow-symlinks --delete
+              env:
+                  AWS_S3_BUCKET: ${{ steps.preparations.outputs.aws-s3-bucket }}
+                  AWS_ACCESS_KEY_ID: ${{ steps.preparations.outputs.aws-access-key-id }}
+                  AWS_SECRET_ACCESS_KEY: ${{ steps.preparations.outputs.aws-secret-access-key }}
+                  AWS_REGION: ${{ steps.preparations.outputs.aws-region }}
+                  SOURCE_DIR: 'dist/'
+                  DEST_DIR: ''
+
+            - name: Trigger Playwright Tests
+              # Only trigger these if it's a manual dispatch *and* environment is 'platform-uat'.
+              if: >
+                  github.event.inputs.environment == 'platform-uat'
+              uses: convictional/trigger-workflow-and-wait@v1.6.5
+              with:
+                  owner: guardme-development
+                  repo: horus-automation-ui
+                  github_token: ${{ secrets.HORUS_PAT_TOKEN }}
+                  workflow_file_name: playwright.yml
+                  ref: main
+                  wait_interval: 10
+                  client_payload: '{"RUNENV": "UAT"}'
+                  propagate_failure: true
+                  trigger_workflow: true
+                  wait_workflow: false

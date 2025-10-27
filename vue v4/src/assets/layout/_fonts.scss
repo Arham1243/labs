@@ -1,0 +1,29 @@
+/* Regular  */
+@font-face {
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 400;
+     src: url('@/assets/layout/fonts/Inter-Regular.ttf');
+ }
+ /* Medium  */
+ @font-face {
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 500;
+     src: url('@/assets/layout/fonts/Inter-Medium.ttf');
+ }
+ /* SemiBold  */
+ @font-face {
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 600;
+     src: url('@/assets/layout/fonts/Inter-SemiBold.ttf');
+ }
+ /* Bold  */
+ @font-face {
+     font-family: 'Inter';
+     font-style: normal;
+     font-weight: 700;
+     src: url('@/assets/layout/fonts/Inter-Bold.ttf') format('ttf');
+ }
+ 

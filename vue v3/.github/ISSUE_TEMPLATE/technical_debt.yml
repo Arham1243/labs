@@ -1,0 +1,90 @@
+name: 'Technical Debt'
+description: 'Track and plan resolution of technical debt in the codebase.'
+title: '[Tech Debt] <Short summary here>'
+labels: ['technical_debt']
+body:
+    - type: dropdown
+      id: workItemType
+      attributes:
+          label: Azure DevOps Work Item Type
+          options:
+              - Story
+              - Task
+              - Bug
+      validations:
+          required: true
+
+    - type: input
+      id: summary
+      attributes:
+          label: Summary
+          description: Short, clear title describing the technical debt.
+          placeholder: 'Refactor authentication middleware for readability'
+      validations:
+          required: true
+
+    - type: textarea
+      id: description
+      attributes:
+          label: Description
+          description: |
+              Describe the current problematic state, how/why it was introduced, and the risks if left unresolved.
+          placeholder: |
+              **Current State:** ...
+              **Debt Origin:** ...
+              **Impact:** ...
+      validations:
+          required: true
+
+    - type: textarea
+      id: approach
+      attributes:
+          label: Proposed Approach
+          description: Suggested steps or ideas for resolution.
+          placeholder: |
+              - Step 1
+              - Step 2
+              - Step 3
+
+    - type: dropdown
+      id: priority
+      attributes:
+          label: Priority
+          options:
+              - 'High - Blocks development or critical stability/security risk'
+              - 'Medium - Noticeable impact on velocity or maintainability'
+              - 'Low - Minor inconvenience, clean-up task'
+      validations:
+          required: true
+
+    - type: input
+      id: effort
+      attributes:
+          label: Effort Estimate
+          description: Story points or estimated hours.
+          placeholder: '2 points / ~4 hours'
+
+    - type: input
+      id: affected
+      attributes:
+          label: Affected Areas / Modules
+          placeholder: 'AuthService, OrderController, CI Pipeline'
+
+    - type: textarea
+      id: acceptance
+      attributes:
+          label: Acceptance Criteria
+          description: Clear measurable points for completion.
+          placeholder: |
+              - Middleware passes all unit tests.
+              - Code coverage > 90%.
+              - No TODO comments left.
+
+    - type: textarea
+      id: references
+      attributes:
+          label: Related Links / References
+          placeholder: |
+              - Issue #123
+              - PR #456
+              - Commit abc123

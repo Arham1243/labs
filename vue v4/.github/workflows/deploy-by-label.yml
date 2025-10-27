@@ -1,0 +1,113 @@
+name: Deploy By Label
+
+on:
+    pull_request:
+        types:
+            - closed
+        branches:
+            - '0.*.x'
+
+jobs:
+    deploy_by_label:
+        runs-on: ubuntu-latest
+
+        # Only run this if the PR was merged successfully.
+        if: github.event.pull_request.merged == true
+
+        steps:
+            - name: Guess Base Branch Name
+              id: branch-names
+              uses: tj-actions/branch-names@v9
+
+            - name: Validate Base Branch
+              id: validate-branch
+              run: |
+                  current_branch="${{ steps.branch-names.outputs.base_ref_branch }}"
+                  echo "Detected base branch name: '${current_branch}'"
+
+                  # Ensure the base branch matches the 0.*.x pattern.
+                  if [[ ! "${current_branch}" =~ ^0\.[0-9]+\.[xX]$ ]]; then
+                    echo "Error: The base branch '${current_branch}' does not match the 0.*.x pattern."
+                    exit 1
+                  fi
+
+                  echo "TARGET_BRANCH=${current_branch}" >> "$GITHUB_ENV"
+
+            - name: Determine and Trigger Deployments
+              env:
+                  GITHUB_TOKEN: ${{ secrets.HORUS_PAT_TOKEN }}
+                  TARGET_BRANCH: ${{ env.TARGET_BRANCH }}
+              run: |
+                  # Read all label names from the pull_request event payload
+                  labels=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
+                  echo "Labels on this PR:"
+                  echo "$labels"
+
+                  # Prepare an array to hold all environments we need to deploy to
+                  declare -a deploys=()
+
+                  # Check each possible label and, if found, add the corresponding environment to the array
+                  if echo "$labels" | grep -Fq "Deploy to Develop"; then
+                    deploys+=("platform-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Plan Develop"; then
+                    deploys+=("plan-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Plan QA"; then
+                    deploys+=("plan-qa")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Client Develop"; then
+                    deploys+=("client-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Client QA"; then
+                    deploys+=("client-qa")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Claim Develop"; then
+                    deploys+=("claim-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Claim QA"; then
+                    deploys+=("claim-qa")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Policy Develop"; then
+                    deploys+=("policy-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Policy QA"; then
+                    deploys+=("policy-qa")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Accounting Develop"; then
+                    deploys+=("accounting-develop")
+                  fi
+
+                  if echo "$labels" | grep -Fq "Deploy to Accounting QA"; then
+                    deploys+=("accounting-qa")
+                  fi
+
+                  # If no recognized labels are found, exit
+                  if [ ${#deploys[@]} -eq 0 ]; then
+                    echo "No recognized 'Deploy to X' labels found."
+                    exit 1
+                  fi
+
+                  # Loop over each environment in deploys and trigger the API dispatch
+                  for env_found in "${deploys[@]}"; do
+                    echo "Triggering horus-platform-app with ref='${TARGET_BRANCH}', environment='${env_found}'."
+                    curl -X POST \
+                      -H "Accept: application/vnd.github.v3+json" \
+                      -H "Authorization: Bearer $GITHUB_TOKEN" \
+                      https://api.github.com/repos/guardme-development/horus-platform-app/actions/workflows/deployment.yml/dispatches \
+                      -d '{
+                        "ref": "'"${TARGET_BRANCH}"'",
+                        "inputs": {
+                          "environment": "'"${env_found}"'"
+                        }
+                      }'
+                  done

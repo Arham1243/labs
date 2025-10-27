@@ -1,0 +1,10 @@
+So why don't you tell us a little bit about yourself and your experience?
+how many years of experience
+what is reach and how does it work
+what are the hooks with some examples
+use effect return function in react (cleanup function)
+state management tools in react
+directory structure 
+use memo 
+call back functions
+props drilling

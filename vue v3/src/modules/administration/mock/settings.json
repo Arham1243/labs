@@ -1,0 +1,222 @@
+[
+    {
+        "key": "underwriters",
+        "name": "Underwriters",
+        "icon": "pi pi-money-bill",
+        "description": "Underwriters Settings",
+        "group": "Setup",
+        "id_icon": "underwriters-icon",
+        "id_title": "underwriters-title",
+        "id_description": "underwriters-description",
+        "permission": "view underwriters"
+    },
+    {
+        "key": "country",
+        "name": "Country/Regions",
+        "icon": "pi pi-globe",
+        "description": "List of Countries, Regions, and Provinces",
+        "group": "Setup",
+        "id_icon": "country-icon",
+        "id_title": "country-title",
+        "id_description": "country-description",
+        "permission": ["view countries", "view regions", "view provinces"]
+    },
+    {
+        "key": "languages",
+        "name": "Languages",
+        "icon": "pi pi-language",
+        "description": "Languages Settings",
+        "group": "Setup",
+        "id_icon": "languages-icon",
+        "id_title": "languages-title",
+        "id_description": "languages-description",
+        "permission": "view languages"
+    },
+    {
+        "key": "currency",
+        "name": "Currency",
+        "icon": "pi pi-dollar",
+        "description": "Currency settings and rates",
+        "group": "Setup",
+        "id_icon": "currency-icon",
+        "id_title": "currency-title",
+        "id_description": "currency-description",
+        "permission": "view currencies"
+    },
+    {
+        "key": "payment-methods",
+        "name": "Payment Methods",
+        "icon": "pi pi-credit-card",
+        "description": "Payment Methods Settings",
+        "group": "Setup",
+        "id_icon": "payment-methods-icon",
+        "id_title": "payment-methods-title",
+        "id_description": "payment-methods-description",
+        "permission": "view payment methods"
+    },
+    {
+        "key": "app-center",
+        "name": "App Center",
+        "icon": "pi pi-cog",
+        "description": "App Center Settings",
+        "group": "Setup",
+        "id_icon": "app-center-icon",
+        "id_title": "app-center-title",
+        "id_description": "app-center-description",
+        "permission": "view app centers"
+    },
+    {
+        "key": "settings/date-time",
+        "name": "Settings",
+        "icon": "pi pi-calendar-times",
+        "description": "Date/Time and Currency Settings",
+        "group": "Setup",
+        "id_icon": "settings-icon",
+        "id_title": "settings-title",
+        "id_description": "settings-description",
+        "permission": "update settings"
+    },
+    {
+        "key": "scheduled-jobs",
+        "name": "Scheduled Jobs",
+        "icon": "pi pi-clock",
+        "description": "Scheduled jobs Settings",
+        "group": "Setup",
+        "id_icon": "scheduled-jobs-icon",
+        "id_title": "scheduled-jobs-title",
+        "id_description": "scheduled-jobs-description",
+        "permission": "view scheduled jobs"
+    },
+    {
+        "key": "announcement",
+        "name": "Announcement",
+        "icon": "pi pi-megaphone",
+        "description": "Announcement Settings",
+        "group": "Setup",
+        "id_icon": "announcement-icon",
+        "id_title": "announcement-title",
+        "id_description": "announcement-description",
+        "permission": "view announcements"
+    },
+    {
+        "key": "menu",
+        "name": "Menu",
+        "icon": "pi pi-bars",
+        "description": "Menu settings",
+        "group": "System",
+        "id_icon": "menu-icon",
+        "id_title": "menu-title",
+        "id_description": "menu-description",
+        "permission": "view menu items"
+    },
+    {
+        "key": "users",
+        "name": "Users",
+        "icon": "pi pi-user",
+        "description": "Users management",
+        "group": "Users",
+        "id_icon": "users-icon",
+        "id_title": "users-title",
+        "id_description": "users-description",
+        "permission": "view users"
+    },
+    {
+        "key": "teams",
+        "name": "Teams",
+        "icon": "pi pi-users",
+        "description": "Teams management",
+        "group": "Users",
+        "id_icon": "teams-icon",
+        "id_title": "teams-title",
+        "id_description": "teams-description",
+        "permission": "view teams"
+    },
+    {
+        "key": "roles",
+        "name": "Roles",
+        "icon": "pi pi-key",
+        "description": "Roles management",
+        "group": "Users",
+        "id_icon": "roles-icon",
+        "id_title": "roles-title",
+        "id_description": "roles-description",
+        "permission": "view roles"
+    },
+    {
+        "key": "client-sector",
+        "name": "Client Sector",
+        "icon": "pi pi-briefcase",
+        "description": "Client Sector Settings",
+        "group": "Client",
+        "id_icon": "client-sector-icon",
+        "id_title": "client-sector-title",
+        "id_description": "client-sector-description",
+        "permission": "view client sectors"
+    },
+    {
+        "key": "contact-types",
+        "name": "Contact Type",
+        "icon": "pi pi-users",
+        "description": "Contact Type Settings",
+        "group": "Client",
+        "id_icon": "contact-type-icon",
+        "id_title": "contact-type-title",
+        "id_description": "contact-type-description",
+        "permission": "view contact types"
+    },
+    {
+        "group": "Plan"
+    },
+    {
+        "key": "vendors",
+        "name": "Vendors",
+        "icon": "pi pi-dollar",
+        "description": "Vendor Settings",
+        "group": "Plan",
+        "id_icon": "vendor-icon",
+        "id_title": "vendor-title",
+        "id_description": "vendor-description",
+        "permission": "view vendors"
+    },
+    {
+        "key": "contact-sources",
+        "name": "Contact Sources",
+        "icon": "pi pi-sitemap",
+        "description": "Contact Sources Settings",
+        "group": "Policy",
+        "id_icon": "contact-sources-icon",
+        "id_title": "contact-sources-title",
+        "id_description": "contact-sources-description"
+    },
+    {
+        "key": "genders",
+        "name": "Genders",
+        "icon": "pi pi-users",
+        "description": "Genders Settings",
+        "group": "Policy",
+        "id_icon": "genders-icon",
+        "id_title": "genders-title",
+        "id_description": "genders-description"
+    },
+    {
+        "key": "applicant-types",
+        "name": "Applicant Types",
+        "icon": "pi pi-briefcase",
+        "description": "Applicant Types Settings",
+        "group": "Policy",
+        "id_icon": "applicant-types-icon",
+        "id_title": "applicant-types-title",
+        "id_description": "applicant-types-description"
+    },
+    {
+        "key": "adjudication-queue",
+        "name": "Adjudication Queue",
+        "icon": "pi pi-cog",
+        "description": "Adjudication Queue Settings",
+        "group": "Claim",
+        "id_icon": "adjudication-queue-icon",
+        "id_title": "adjudication-queue-title",
+        "id_description": "adjudication-queue-description",
+        "route": "/claims/adjudication"
+    }
+]

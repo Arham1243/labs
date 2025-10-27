@@ -1,0 +1,21 @@
+.enrollment-sidebar .p-sidebar-header {
+    justify-content: space-between !important;
+}
+
+.w-35rem {
+    width: 35rem !important;
+}
+
+.policy-detail-dialog .p-dialog-content {
+    background-color: var(--surface-body);
+}
+
+.policy-detail-dialog .p-tabview-nav-container {
+    background: white;
+    margin: 0 -1.5rem 0 -1.5rem;
+    padding: 0 1.5rem 0 1.5rem;
+}
+
+.policy-detail-dialog .p-tabview-ink-bar {
+    margin-left: 1.5rem;
+}
